@@ -21,6 +21,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -56,6 +57,41 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+
+        //Minimo zoom da camera
+        mMap.setMinZoomPreference(6.0f);
+
+        //Máximo zoom da camera
+        mMap.setMaxZoomPreference(16.0f);
+
+
+        //Cria o controle de zoom no mapa
+        mMap.getUiSettings().setZoomControlsEnabled(true);
+
+        //Mostrar a bussola no mapa - a partir de um zoom de posicionamento.
+        mMap.getUiSettings().setCompassEnabled(true);
+
+        //Mostra os níveis dos andares no interior do estabelecimento. Mapa interno
+        mMap.getUiSettings().setIndoorLevelPickerEnabled(true);
+
+        //Barra de ferramentas do mapa.
+        mMap.getUiSettings().setMapToolbarEnabled(true);
+
+        //Gestos de Zoom
+        mMap.getUiSettings().setZoomGesturesEnabled(true);
+
+        //Gestos de rolagem (movimento)
+        mMap.getUiSettings().setScrollGesturesEnabled(true);
+
+        //Gestos de inclinação
+        mMap.getUiSettings().setTiltGesturesEnabled(true);
+
+        //Gestos de rotação
+        mMap.getUiSettings().setRotateGesturesEnabled(true);
+
+        //Câmera e Visualização
+        mMap.setBuildingsEnabled(true);
+
 
         //Criando objeto para gerenciar localização do usuário
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
